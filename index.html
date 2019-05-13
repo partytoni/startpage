@@ -303,7 +303,7 @@
 <script>
 	function getNews() {
 		var newsapiOrgKey = "46eee7b2625f4746b46d10114e35dd44";
-		var url = 'https://newsapi.org/v2/top-headlines?country=it&apiKey=' + newsapiOrgKey;
+		var url = 'https://newsapi.org/v2/top-headlines?sources=google-news-it&apiKey=' + newsapiOrgKey;
 		var req = new Request(url);
 		fetch(req)
 			.then(function (response) {
