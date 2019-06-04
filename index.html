@@ -215,7 +215,7 @@
 	justify-content: center;
 	flex-wrap: wrap;
 	padding-bottom: 20px;
-	padding-top: 180px;
+	padding-top: 250px;
 	overflow: auto;
   }
 
@@ -288,7 +288,7 @@
 <main>
   <time id="js-clock"></time>
   <form id="js-search-form" autocomplete="off">
-	<input id="js-search-input" class="search-input" type="text" autofocus>
+	<input id="js-search-input" class="search-input" type="text" >
 	<ul id="js-search-suggestions" class="search-suggestions"></ul>
 	</form>
 	<br>
@@ -489,13 +489,13 @@
 
 	var keyPress = function(event) {
 	  var char = String.fromCharCode(event.which);
-
 	  if (char.length && event.which !== 13) {
 			Help.toggle(false);
-			if (searchInput.value == '') {
-				searchInput.value = char;
+			if (searchInput.id != document.activeElement.id) {
+				searchInput.value += char;
+                searchInput.focus();
 			}
-			searchInput.focus();	
+			
 	  }
 
 	  if (config.instantRedirect) {
@@ -508,7 +508,7 @@
 				}
 				});
 			});
-			}
+		}
 	};
 
 	var submit = function(event) {
@@ -571,6 +571,7 @@
 	document.addEventListener('keypress', keyPress);
 	searchForm.addEventListener('submit', submit, false);
 	searchInput.addEventListener('keyup', keyUp);
+
 
 	return {
 	  submitWithThis: function() {
